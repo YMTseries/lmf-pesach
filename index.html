@@ -402,16 +402,8 @@
   <div class="modal">
     <h2>Undo Pickup</h2>
     <div class="modal-order-info" id="undoModalOrderInfo"></div>
-    <p>Enter your admin PIN to undo this pickup</p>
+    <p id="undoAdminLabel">Enter PIN to undo:</p>
     <div class="modal-error" id="undoModalError">Incorrect PIN. Only the admin who marked this can undo it.</div>
-    <select id="undoAdminSelect">
-      <option value="">-- Select Admin --</option>
-      <option value="Admin1">Admin 1</option>
-      <option value="Admin2">Admin 2</option>
-      <option value="Admin3">Admin 3</option>
-      <option value="Admin4">Admin 4</option>
-      <option value="Admin5">Admin 5</option>
-    </select>
     <input type="password" id="undoAdminPin" placeholder="Enter 4-digit PIN" maxlength="4" inputmode="numeric">
     <div class="modal-buttons">
       <button class="modal-cancel" id="undoModalCancel">Cancel</button>
@@ -703,12 +695,15 @@ function confirmPickup() {
 }
 
 // --- Undo Modal ---
+var undoAdminName = null;
+
 function openUndoModal(orderNum) {
   pendingOrderNum = orderNum;
   var order = ORDERS.find(function(o) { return o.order === orderNum; });
   var pickup = pickupData[String(orderNum)];
-  document.getElementById('undoModalOrderInfo').textContent = 'Order #' + orderNum + ' - ' + order.first + ' ' + order.last + ' (marked by ' + pickup.admin + ')';
-  document.getElementById('undoAdminSelect').value = '';
+  undoAdminName = pickup.admin;
+  document.getElementById('undoModalOrderInfo').textContent = 'Order #' + orderNum + ' - ' + order.first + ' ' + order.last;
+  document.getElementById('undoAdminLabel').textContent = 'Enter PIN for ' + pickup.admin + ' to undo:';
   document.getElementById('undoAdminPin').value = '';
   document.getElementById('undoModalError').style.display = 'none';
   document.getElementById('undoModalOverlay').classList.add('active');
@@ -717,18 +712,13 @@ function openUndoModal(orderNum) {
 function closeUndoModal() {
   document.getElementById('undoModalOverlay').classList.remove('active');
   pendingOrderNum = null;
+  undoAdminName = null;
 }
 
 function confirmUndo() {
-  var admin = document.getElementById('undoAdminSelect').value;
   var pin = document.getElementById('undoAdminPin').value;
-  if (!admin) {
-    document.getElementById('undoModalError').textContent = 'Please select an admin.';
-    document.getElementById('undoModalError').style.display = 'block';
-    return;
-  }
-  if (ADMIN_PINS[admin] !== pin) {
-    document.getElementById('undoModalError').textContent = 'Incorrect PIN. Please try again.';
+  if (ADMIN_PINS[undoAdminName] !== pin) {
+    document.getElementById('undoModalError').textContent = 'Incorrect PIN for ' + undoAdminName + '. Only the admin who marked this can undo it.';
     document.getElementById('undoModalError').style.display = 'block';
     return;
   }
