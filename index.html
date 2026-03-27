@@ -379,17 +379,17 @@
   <div class="modal">
     <h2>Confirm Pickup</h2>
     <div class="modal-order-info" id="modalOrderInfo"></div>
-    <p>Select your admin account and enter your PIN</p>
-    <div class="modal-error" id="modalError">Incorrect PIN. Please try again.</div>
+    <p>Select your name and enter your code</p>
+    <div class="modal-error" id="modalError">Incorrect code. Please try again.</div>
     <select id="adminSelect">
-      <option value="">-- Select Admin --</option>
-      <option value="Admin1">Admin 1</option>
-      <option value="Admin2">Admin 2</option>
-      <option value="Admin3">Admin 3</option>
-      <option value="Admin4">Admin 4</option>
-      <option value="Admin5">Admin 5</option>
+      <option value="">-- Select Name --</option>
+      <option value="Daniel">Daniel</option>
+      <option value="Josh">Josh</option>
+      <option value="Chevi">Chevi</option>
+      <option value="RR">RR</option>
+      <option value="Admin">Admin</option>
     </select>
-    <input type="password" id="adminPin" placeholder="Enter 4-digit PIN" maxlength="4" inputmode="numeric">
+    <input type="password" id="adminPin" placeholder="Enter 2-digit code" maxlength="2" inputmode="numeric">
     <div class="modal-buttons">
       <button class="modal-cancel" id="modalCancel">Cancel</button>
       <button class="modal-confirm" id="modalConfirm">Confirm Pickup</button>
@@ -404,7 +404,7 @@
     <div class="modal-order-info" id="undoModalOrderInfo"></div>
     <p id="undoAdminLabel">Enter PIN to undo:</p>
     <div class="modal-error" id="undoModalError">Incorrect PIN. Only the admin who marked this can undo it.</div>
-    <input type="password" id="undoAdminPin" placeholder="Enter 4-digit PIN" maxlength="4" inputmode="numeric">
+    <input type="password" id="undoAdminPin" placeholder="Enter 2-digit code" maxlength="2" inputmode="numeric">
     <div class="modal-buttons">
       <button class="modal-cancel" id="undoModalCancel">Cancel</button>
       <button class="modal-confirm" id="undoModalConfirm" style="background:#e74c3c;">Undo Pickup</button>
@@ -433,11 +433,11 @@ var pickupsRef = db.ref('pickups');
 
 // --- Admin PINs ---
 var ADMIN_PINS = {
-  Admin1: '1355',
-  Admin2: '9769',
-  Admin3: '7821',
-  Admin4: '4213',
-  Admin5: '6131'
+  Daniel: '11',
+  Josh: '22',
+  Chevi: '33',
+  RR: '99',
+  Admin: '44'
 };
 
 // --- Order Data ---
