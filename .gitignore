@@ -1,0 +1,57 @@
+# Dependencies
+node_modules
+
+# Build output and caches (these are what fought with Dropbox)
+.next
+out
+dist
+build
+.turbo
+.cache
+*.tsbuildinfo
+next-env.d.ts
+
+# Deploy state
+.vercel
+.netlify
+
+# Dropbox conflict/temp artifacts (e.g. page.tsx.tmp.25240.1774146738025)
+*.tmp.*
+*conflicted copy*
+
+# Local dev databases
+dev.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Secrets - never commit. Restore with: vercel env pull .env.local
+.env
+.env*
+!.env.example
+!.env*.example
+
+# Machine-local Claude Code state (.claude/ itself is shared on purpose)
+.claude/settings.local.json
+
+# Local dev database
+.pgdata/
+
+# Scratch media and client source material at the repo root.
+# Assets under public/ and src/ are tracked normally.
+/*.pdf
+/*.docx
+/*.pptx
+/*.xlsx
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.mp3
+/*.mp4
+/*.wav
+/*.zip
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,11 @@
+# STAGING (yitzieross.com) — block indexing so this preview doesn't get
+# crawled as a duplicate of the real site.
+# WHEN YOU GO LIVE on leonmayerfund.org: delete the two lines below and
+# uncomment the two after them.
+User-agent: *
+Disallow: /
+
+# User-agent: *
+# Allow: /
+
+Sitemap: https://www.leonmayerfund.org/sitemap.xml
